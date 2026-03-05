@@ -15,14 +15,14 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         {/* Google Analytics 4 */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFC17LPYEK"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MNX387THZJ"></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-RFC17LPYEK');
+              gtag('config', 'G-MNX387THZJ');
             `,
           }}
         />
@@ -98,8 +98,8 @@ export default function RootLayout({ children }) {
               <div>
                 <h4 className="font-semibold mb-4">Payment</h4>
                 <div className="flex items-center space-x-2">
-                  <span className="text-2xl">💳</span>
-                  <span className="text-gray-400">Secure via Stripe</span>
+                  <span className="text-2xl">🍋</span>
+                  <span className="text-gray-400">Secured by Lemon Squeezy</span>
                 </div>
               </div>
             </div>

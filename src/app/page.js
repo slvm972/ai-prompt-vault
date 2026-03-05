@@ -249,7 +249,7 @@ export default function Home() {
                 </Link>
                 
                 <p className="text-center text-gray-500 text-sm mt-4">
-                  🔒 Secured by Stripe • 30-day money back guarantee
+                  🔐 Secured by Lemon Squeezy • 30-day money back guarantee
                 </p>
               </div>
             </div>

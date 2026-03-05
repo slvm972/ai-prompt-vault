@@ -1,48 +1,13 @@
 'use client'
 
-import { useState } from 'react'
-import { loadStripe } from '@stripe/stripe-js'
-import { Check, Lock, CreditCard, Shield, Loader2 } from 'lucide-react'
-
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
+import { Lock, CreditCard, Shield, Check } from 'lucide-react'
 
 export default function Checkout() {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const lemonSqueezyUrl = 'https://mostovoy-ai.lemonsqueezy.com/checkout/buy/cd5c0d33-6bf5-49f9-a366-1b46f8cf92c7'
 
-  const handleCheckout = async () => {
-    setLoading(true)
-    setError(null)
-
-    try {
-      const response = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-
-      const data = await response.json()
-
-      if (data.error) {
-        setError(data.error)
-        setLoading(false)
-        return
-      }
-
-      const stripe = await stripePromise
-      const { error: stripeError } = await stripe.redirectToCheckout({
-        sessionId: data.sessionId,
-      })
-
-      if (stripeError) {
-        setError(stripeError.message)
-      }
-    } catch (err) {
-      setError('Failed to start checkout. Please try again.')
-    } finally {
-      setLoading(false)
-    }
+  const handleCheckout = () => {
+    // Redirect to Lemon Squeezy checkout
+    window.location.href = lemonSqueezyUrl
   }
 
   return (
@@ -53,13 +18,6 @@ export default function Checkout() {
           <h1 className="text-4xl font-bold mb-4">Complete Your Purchase</h1>
           <p className="text-xl text-gray-600">Get instant access to 1500+ premium AI prompts</p>
         </div>
-
-        {/* Error Message */}
-        {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
-            {error}
-          </div>
-        )}
 
         {/* Product Summary */}
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
@@ -107,39 +65,21 @@ export default function Checkout() {
           </div>
         </div>
 
-        {/* Payment Form */}
+        {/* Payment Section */}
         <div className="bg-white rounded-2xl shadow-xl p-8">
-          <h3 className="text-xl font-semibold mb-6">Payment Details</h3>
+          <h3 className="text-xl font-semibold mb-6">Secure Checkout</h3>
           
-          {/* Stripe Elements Placeholder */}
-          <div className="border-2 border-gray-200 rounded-lg p-4 mb-6">
+          {/* Payment Info */}
+          <div className="border-2 border-gray-200 rounded-lg p-6 mb-6 bg-gray-50">
             <div className="flex items-center justify-between mb-4">
-              <span className="font-medium">Credit Card</span>
+              <span className="font-medium text-lg">AI Prompt Vault - All Access</span>
               <div className="flex space-x-2">
                 <CreditCard className="w-8 h-5 text-gray-400" />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="Card number"
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
-              />
-              <input
-                type="text"
-                placeholder="MM / YY"
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
-              />
-              <input
-                type="text"
-                placeholder="CVC"
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
-              />
-              <input
-                type="text"
-                placeholder="ZIP / Postal"
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
-              />
+            <div className="flex justify-between items-center">
+              <span className="text-gray-600">One-time payment</span>
+              <span className="text-2xl font-bold text-primary-600">$39</span>
             </div>
           </div>
 
@@ -147,37 +87,35 @@ export default function Checkout() {
           <div className="flex items-center justify-center space-x-6 text-gray-400 text-sm mb-6">
             <div className="flex items-center">
               <Lock className="w-4 h-4 mr-2" />
-              <span>256-bit SSL</span>
+              <span>Secure Checkout</span>
             </div>
             <div className="flex items-center">
               <Shield className="w-4 h-4 mr-2" />
-              <span>Secure Payment</span>
+              <span>Protected Payment</span>
             </div>
             <div className="flex items-center">
               <CreditCard className="w-4 h-4 mr-2" />
-              <span>PCI Compliant</span>
+              <span>All Major Cards</span>
             </div>
           </div>
 
           {/* Checkout Button */}
           <button
             onClick={handleCheckout}
-            disabled={loading}
-            className="w-full bg-gradient text-white py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition disabled:opacity-50 flex items-center justify-center"
+            className="w-full bg-gradient text-white py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition flex items-center justify-center"
           >
-            {loading ? (
-              <>
-                <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                Processing...
-              </>
-            ) : (
-              'Pay $39 - Instant Access'
-            )}
+            <Lock className="w-5 h-5 mr-2" />
+            Pay $39 - Instant Access
           </button>
 
           {/* Money Back Guarantee */}
           <p className="text-center text-gray-500 text-sm mt-4">
             🔒 30-day money-back guarantee. No questions asked.
+          </p>
+          
+          {/* Powered by Lemon Squeezy */}
+          <p className="text-center text-gray-400 text-xs mt-4">
+            🔐 Secured by Lemon Squeezy
           </p>
         </div>
 
