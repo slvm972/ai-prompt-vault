@@ -1,11 +1,9 @@
-'use client'
-
 import { marketingPrompts, programmingPrompts, writingPrompts } from '../data/prompts'
 import { Check, Copy, Search } from 'lucide-react'
 import Link from 'next/link'
 
-export default function Catalog({ searchParams }) {
-  const category = searchParams.category || 'all'
+export default async function Catalog({ searchParams }) {
+  const { category = 'all' } = await searchParams
   
   const categories = [
     { id: 'all', name: 'All Categories', icon: '📚', count: 1500 },

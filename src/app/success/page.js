@@ -1,8 +1,8 @@
 import { CheckCircle, Download, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
-export default function Success({ searchParams }) {
-  const sessionId = searchParams.session_id
+export default async function Success({ searchParams }) {
+  const { session_id: sessionId } = await searchParams
 
   return (
     <div className="min-h-screen bg-gradient flex items-center justify-center">
