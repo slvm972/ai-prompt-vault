@@ -1,1 +1,10 @@
 .vercel
+
+# Dependencies
+/node_modules/
+
+# Next.js build output
+/.next/
+
+# Local environment files
+.env*.local
