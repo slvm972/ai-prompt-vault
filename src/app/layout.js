@@ -1,6 +1,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
+import { Analytics } from '@vercel/analytics/next'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -62,6 +63,9 @@ export default function RootLayout({ children }) {
         <main className="pt-16">
           {children}
         </main>
+        
+        {/* Vercel Analytics */}
+        <Analytics />
 
         {/* Footer */}
         <footer className="bg-gray-900 text-white py-12 mt-20">
