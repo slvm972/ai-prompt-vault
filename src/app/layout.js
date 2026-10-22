@@ -8,6 +8,9 @@ export const metadata = {
   title: 'AI Prompt Vault - Premium Prompts for Marketing, Programming & Texts',
   description: 'Access 1500+ high-quality AI prompts for ChatGPT, Claude & AI tools. Boost productivity with professionally crafted prompts.',
   keywords: 'AI prompts, ChatGPT prompts, Claude prompts, marketing prompts, programming prompts, content writing',
+  icons: {
+    icon: '/favicon.png',
+  },
 }
 
 export default function RootLayout({ children }) {
